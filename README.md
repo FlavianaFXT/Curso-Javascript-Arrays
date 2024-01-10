@@ -16,11 +16,14 @@ Temos aqui:
             Como utilizar a propriedade .length:
             
             Como utilizar os métodos .push() e .pop():
+            Separar um array em partes com slice() (utilizamos para obter dois novos arrays a partir de um).
+            Remover e incluir novos elementos em um array com splice(); sendo que esse método permite remover elementos de qualquer posição do array. Além disso, podemos incluir um novo elemento no local dos removidos.
+            
+            Concatenar elementos em um único array com concat(); sendo que essa é uma forma facilitada de juntar dois arrays.
+            
+            Trabalhar com arrays de duas dimensões. Vimos que uma lista também pode guardar outras listas! Para acessar elementos das listas mais internas, devemos informar primeiro os índices das mais externas e depois os das mais internas, como por exemplo com funcionarios[0][2].
 
             
-
-
-
 ## 1 - Preparando o ambiente
 
 JavaScript é conhecida como a “linguagem da web”. Embora tenha se desenvolvido no front-end, atualmente cada vez mais a utilizamos no chamado back-end, ou server side (lado do servidor) das aplicações web. Este curso foca no uso do JavaScript para back-end.
@@ -182,7 +185,6 @@ console.log(`A média é ${media}.`);
 
 08
 Para saber mais: métodos de array
-PRÓXIMA ATIVIDADE
 
 Já utilizamos alguns métodos dos arrays nessa aula, e ainda existem muitos métodos que não vimos. Porém, pode ainda ter ficado a dúvida: o que são os métodos?
 
@@ -256,7 +258,8 @@ Consegue remover, um ou mais elementos consecutivos caso o segundo parâmetro te
 Desafio 4: Sala dividida
 Temos uma sala de aula com 20 estudantes, representados por uma lista de strings:
 
-'João', 'Juliana', 'Ana', 'Caio', 'Lara', 'Marjorie', 'Guilherme', 'Aline', 'Fabiana', 'Andre', 'Carlos', 'Paulo', 'Bia', 'Vivian', 'Isabela', 'Vinícius', 'Renan', 'Renata', 'Daisy', 'Camilo'COPIAR CÓDIGO
+'João', 'Juliana', 'Ana', 'Caio', 'Lara', 'Marjorie', 'Guilherme', 'Aline', 'Fabiana', 'Andre', 'Carlos', 'Paulo', 'Bia', 'Vivian', 'Isabela', 'Vinícius', 'Renan', 'Renata', 'Daisy', 'Camilo'
+
 Nosso desafio é dividi-los em duas salas com a mesma quantidade de pessoas. Isto é, duas listas com 10 estudantes, cada.
 
 Informaremos dois parâmetro para o método slice(), separados por vírgula. O primeiro indicará a posição do elemento em que começaremos a "fatiar" a lista original. No caso, começaremos por João, que está na posição 0. O segundo parâmetro indicará onde terminaremos de "fatiar". No caso, colocaremos o valor 10, que se refere ao índice do 11° estudante, André.
@@ -307,9 +310,178 @@ O método splice() aceita um terceiro parâmetro. Então, vamos colocar a string
 
 Mais uma vez, teremos um método para nos auxiliar na junção dessas listas: o concat(), que vem da palavra "concatenar". Em programação, isso significa "juntar".
 Dentro dos parênteses desse método, passaremos como parâmetro outra lista. No caso, salaPython.
+
 O método concat() não alterará nenhum dos arrays, ele retornará uma nova lista. Sabendo disso, vamos guardar o resultado numa constante chamada salasUnificadas.
 Como resultado, temos um novo array com todos os nomes — primeiro com estudantes de JavaScript e, depois, os de Python. 
+
 Vale lembrar que a ordem em que informamos os arrays afeta a ordem em que os nomes aparecerão na lista final. Para demonstrar essa diferença, vamos inverter as referências na linha em que atribuímos o valor da constante salasUnificadas. Em vez de salaJS, colocaremos salaPython e, em lugar de salaPython, usaremos salaJS.
+
+### Lista com 2 Dimensões
+
+![image](https://github.com/FlavianaFXT/Curso-Javascript-Arrays/assets/113718720/1fff1b43-ab46-4069-bba8-44e5f25379dd)
+
+Desafio 7: Lista com 2 dimensões
+Foram fornecidas duas listas para nós. A primeira contém os nomes de quatro estudantes e a segunda possui suas respectivas médias:
+
+'João', 'Juliana', 'Caio', 'Ana'
+10, 8, 7.5, 9
+Nosso objetivo é criar uma lista que contenha essas duas listas. Já adiantando: é possível uma lista conter outras listas. A seguir, vamos aprender como lidar com esse tipo de dado mais complexo.
+
+Listas dentro de listas
+No VS Code, vamos criar um arquivo chamado lista-duas-dimensoes.js. Começaremos declarando duas listas, uma com os nomes das pessoas estudantes e outra com suas notas:
+
+Em seguida, vamos declarar uma lista chamada listaDeAlunosEMedias, que conterá as listas alunos e medias. O primeiro elemento será a lista de estudantes e o segundo será a lista de médias:
+
+O retorno pode parecer um pouco estranho, mas está correto. Trata-se de uma lista cujo conteúdo são duas listas. Nas extremidades, abrimos e fechamos os colchetes do array "externo". Dentro dele, temos a lista de estudantes na primeira posição e a lista de médias na segunda posição.
+
+Acessando elementos
+Conseguimos criar uma lista que contém outras duas listas, mas como faremos para acessar elementos dentro delas? Por exemplo, como podemos selecionar Juliana, que está na posição 1 da lista alunos? Vamos descobrir, a seguir.
+
+bash```
+
+    console.log(
+    `A aluna da posição 1 da lista de alunos é: ${listaDeAlunosEMedias[0]}.`
+    );
+```
+
+Portanto, listadeAlunosEMedias[0] representa a lista de alunos. Na sequência, vamos acessar a posição 1 da lista de alunos, pois sabemos que é onde está Juliana. Após [0], basta abrir e fechar outros colchetes e inserir o valor 1 entre eles:
+
+
+bash```
+
+     console.log(
+    `A aluna da posição 1 da lista de alunos é: ${listaDeAlunosEMedias[0][1]}.`
+     );
+```
+
+Digamos que agora também precisamos indicar a média da Juliana.
+Uma vez dentro da lista de médias, vamos acessar a nota de Juliana, que está na posição 1 também. 
+
+bash```
+
+    console.log(
+    `A aluna da posição 1 da lista de alunos é: ${listaDeAlunosEMedias[0][1]}.
+    A nota dessa aluna é ${listaDeAlunosEMedias[1][1]}.
+    `
+    );
+    
+ ```
+
+
+
+Para saber mais: matrizes
+
+Durante a aula vimos as listas com duas dimensões, ou seja, arrays que contêm arrays, podendo ter um único array ou vários dentro do principal.
+
+const nomes = ["Ana", "Juliana", "Leonardo"];
+const idades = [30, 35, 28];
+const faculdade = [false, true, true];
+
+const funcionarios = [nomes, idades, faculdade];COPIAR CÓDIGO
+O array funcionarios é um array de duas dimensões. Há 3 arrays dentro dele, e para acessar os valores em funcionarios precisamos de 2 colchetes “[ ] [ ]”. O primeiro colchete será usado para escolher qual dos 3 arrays dentro de funcionarios será acessado. podendo ser:
+
+0 -> nomes
+1 -> idades
+2 -> faculdade
+O segundo colchete será usado para acessar a informação dentro do array escolhido.
+
+Outra forma de chamar os arrays de 2 dimensões é matrizes. Matrizes podem ser visualizadas como uma tabela do Excel, onde cada campo representa um elemento, e precisamos de uma linha e uma coluna para acessar um campo. Então, as linhas são o primeiro colchete e a coluna o segundo colchete.
+
+Arrays têm seu principal uso quando temos uma grande quantidade de informações com propósitos similares, como as notas de um aluno. Matrizes, por sua vez, são utilizadas quando precisamos de vários arrays similares ou com informações ligadas às outras, como as notas de uma classe com vários alunos.
+
+As matrizes não são limitadas a 2 dimensões, podendo ter mais dimensões, de modo que cada dimensão é representada por um colchete. Porém, tome cuidado para não se perder dentro delas, já que se uma matriz passa a ter, por exemplo, 4 ou 5 dimensões, se torna bem difícil saber exatamente o que está sendo acessado e começamos a ter problemas para fazer a manutenção do código.
+
+vamos ver o que acontece se um dos parâmetros for um array com dois elementos, um número e um array:
+
+const arrayOriginal = [50, 60, 70]
+const arrayConcat = arrayOriginal.concat([80, [90, 100]])
+
+console.log(arrayConcat)
+console.log(arrayOriginal)COPIAR CÓDIGO
+O resultado no terminal agora é:
+
+[ 50, 60, 70, 80, [ 90, 100 ] ]
+[ 50, 60, 70 ]COPIAR CÓDIGO
+Vimos anteriormente que, quando recebe um array como parâmetro, concat() vai concatenar apenas os elementos. Porém, este método não extrai os elementos do array de forma recursiva; ou seja, não vai extrair os elementos de arrays que estejam “aninhados”. Dessa forma, 80 foi extraído do array com sucesso, porém 90 e 100 não, o método considerou [90, 100] como um único elemento.
+
+concat() é um método útil quando não se deseja alterar o array original, e sim fazer uma cópia alterada. Caso isso não seja necessário, considere utilizar push() ou splice() para inserir novos elementos ou fazer alterações no array original.
+
+
+### 3- Laços de Repetição
+
+![image](https://github.com/FlavianaFXT/Curso-Javascript-Arrays/assets/113718720/2bce8028-6631-4112-af0e-6f3a86cf2e03)
+
+
+Desafio 8: Procurando na lista
+Crie uma função que recebe como argumento o nome de um aluno.
+Verifique se o aluno está presente na lista e retorne a média final que se encontra no mesmo índice.
+Caso o nome do aluno não esteja na lista, retorne uma mensagem indicando que o aluno não foi encontrado.
+Para este desafio, usaremos as mesmas listas da aula anterior:
+
+'João', 'Juliana', 'Caio', 'Ana'
+10, 8, 7.5, 9
+
+Checando nomes cadastrados
+Vamos criar uma função chamada exibeNomeENota(), que verificará se o nome de uma pessoa está cadastrado na lista e, depois, mostrará sua nota. Essa função receberá como parâmetro o nome do aluno:
+Primeiramente, criaremos uma lógica para checar se conseguimos exibir uma mensagem ou não, a depender se o nome está presente ou não na lista.
+
+Em exibeNomeENota(), acessaremos apenas a listaDeAlunosEMedias, para nos acostumarmos com a sintaxe de arrays de duas dimensões. Em cenários reais, nem sempre teremos acesso direto a essas listas "internas" como temos agora, então é importante estar familiarizado com essa sintaxe.
+
+Dentro da função exibeNomeENota(), vamos desenvolver uma estrutura if:
+
+Como condição, avaliaremos se o aluno está na lista ou não. Como a lista de alunos está na posição 0 da listaDeAlunosEMedias, usaremos a sintaxe listaDeAlunosEMedias[0] para nos referir a ela. Em seguida, usaremos o método includes() — que significa "incluir", em inglês. Como parâmetro dele, passaremos aluno:
+Vamos incluir o else também. Caso o aluno não seja encontrado, exibiremos outra mensagem explicativa:
+
+O método includes() verifica se o parâmetro passado para ele está incluso na lista. Quando está incluso, o retorno será o valor booleano true (verdadeiro). Do contrário, o retorno será false(falso). Por isso, podemos usar o includes() como condição da estrutura if.
+
+Portanto, já criamos um código para definir se um nome está presente na lista. Vamos continuar complementando o código para sustentar o desafio.
+
+Exibindo a média
+Conforme o desafio, quando o aluno estiver incluso na lista, temos que procurar sua média e exibi-la. Sabemos que a média está no mesmo índice do aluno, porém em outra lista. Por exemplo, João está no índice 0 da lista alunos e sua média está no índice 0 da lista medias. Então, para descobrirmos a média de um aluno, precisamos saber seu índice.
+
+Para encontrar o índice de um elemento em um array, podemos usar o método indexOf() — que significa "índice de", em inglês. Vamos utilizá-lo dentro do bloco if, após o console.log():
+
+Como o objetivo é pesquisar no array alunos, referenciamos essa lista com listaDeAlunosEMedias[0]. Em seguida, usamos o método IndexOf(), que retornará o índice do aluno passado por parâmetro. Guardamos esse retorno na constante indice.
+
+Sabemos que o índice de João é 0, então nosso código está funcionando e aplicamos o método indexOf() corretamente.
+
+Agora que conseguimos selecionar o índice do aluno, vamos pesquisar sua média! A princípio, declararemos a constante mediaDoAluno. Para referenciar a lista medias, usaremos a sintaxe listaDeAlunosEMedias[1]. Em seguida, acessaremos o elemento no mesmo índice do aluno:
+
+Refinamentos
+Por fim, vamos alterar a mensagem exibida no console para torná-la mais objetiva e remover alguns trechos desnecessários do nosso código.
+
+Primeiro, vamos apagar o console.log() em que mostramos a mensagem de que o aluno está cadastrado. E, no console.log() que está dentro do bloco if, vamos utilizar uma template string com uma mensagem mais explicativa.
+
+
+ ```
+     function exibeNomeENota(aluno){
+         if (listaDeAlunosEMedias[0].includes(aluno)) {
+             const indice = listaDeAlunosEMedias[0].indexOf(aluno);
+     
+             const mediaDoAluno = listaDeAlunosEMedias[1][indice];
+     
+             console.log(`${aluno} tem a média ${mediaDoAluno}.`);
+     
+         } else {
+             console.log("Aluno não encontrado!");
+         }
+     }
+ 
+     exibeNomeENota("Juliana");
+ ```
+
+```
+o método includes() confere se o elemento passado por parâmetro está incluso em uma lista;
+o método indexOf() retorna o índice do elemento passado por parâmetro.
+
+###Desestruturando uma lista
+
+
+
+
+
+
+
 
 
 
