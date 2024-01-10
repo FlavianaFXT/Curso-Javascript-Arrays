@@ -23,6 +23,18 @@ Temos aqui:
             
             Trabalhar com arrays de duas dimensões. Vimos que uma lista também pode guardar outras listas! Para acessar elementos das listas mais internas, devemos informar primeiro os índices das mais externas e depois os das mais internas, como por exemplo com funcionarios[0][2].
 
+ Utilizar os métodos includes() e indexOf():
+O includes() retorna true ou false, dependendo se o valor passado como parâmetro está presente ou não no array. O indexOf() retorna a posição no array do valor passado como parâmetro. Utilizamos esses dois métodos em conjunto para primeiro verificar se um aluno estava presente em uma lista, e depois obter sua posição para buscar sua nota em outra lista.
+
+Desestruturar um array:
+Você aprendeu a sintaxe de desestruturação, disponível desde o ES6 (EcmaScript 6), que nos permite criar várias novas variáveis ao mesmo tempo a partir dos elementos de um array.
+
+Utilizar a estrutura for e entender seu funcionamento:
+O for é constituído de três expressões: criação da variável de controle; condição de execução; modificação da variável de controle. Essas três expressões juntas definem quantas vezes o bloco do for será executado.
+
+Utilizar a estrutura for of e entender a diferença em relação ao for:
+O for of sempre é utilizado para percorrer todos os elementos de um array, do início ao fim. Para esses casos, o for of é mais conciso que o for.
+
             
 ## 1 - Preparando o ambiente
 
@@ -368,21 +380,25 @@ bash```
  ```
 
 
-
+```
 Para saber mais: matrizes
 
 Durante a aula vimos as listas com duas dimensões, ou seja, arrays que contêm arrays, podendo ter um único array ou vários dentro do principal.
 
+```
 const nomes = ["Ana", "Juliana", "Leonardo"];
 const idades = [30, 35, 28];
 const faculdade = [false, true, true];
 
-const funcionarios = [nomes, idades, faculdade];COPIAR CÓDIGO
+const funcionarios = [nomes, idades, faculdade];
+```
+
 O array funcionarios é um array de duas dimensões. Há 3 arrays dentro dele, e para acessar os valores em funcionarios precisamos de 2 colchetes “[ ] [ ]”. O primeiro colchete será usado para escolher qual dos 3 arrays dentro de funcionarios será acessado. podendo ser:
 
 0 -> nomes
 1 -> idades
 2 -> faculdade
+
 O segundo colchete será usado para acessar a informação dentro do array escolhido.
 
 Outra forma de chamar os arrays de 2 dimensões é matrizes. Matrizes podem ser visualizadas como uma tabela do Excel, onde cada campo representa um elemento, e precisamos de uma linha e uma coluna para acessar um campo. Então, as linhas são o primeiro colchete e a coluna o segundo colchete.
@@ -392,16 +408,20 @@ Arrays têm seu principal uso quando temos uma grande quantidade de informaçõe
 As matrizes não são limitadas a 2 dimensões, podendo ter mais dimensões, de modo que cada dimensão é representada por um colchete. Porém, tome cuidado para não se perder dentro delas, já que se uma matriz passa a ter, por exemplo, 4 ou 5 dimensões, se torna bem difícil saber exatamente o que está sendo acessado e começamos a ter problemas para fazer a manutenção do código.
 
 vamos ver o que acontece se um dos parâmetros for um array com dois elementos, um número e um array:
-
+```
 const arrayOriginal = [50, 60, 70]
 const arrayConcat = arrayOriginal.concat([80, [90, 100]])
 
 console.log(arrayConcat)
-console.log(arrayOriginal)COPIAR CÓDIGO
-O resultado no terminal agora é:
+console.log(arrayOriginal)
+```
 
+O resultado no terminal agora é:
+```
 [ 50, 60, 70, 80, [ 90, 100 ] ]
-[ 50, 60, 70 ]COPIAR CÓDIGO
+[ 50, 60, 70 ]
+```` 
+
 Vimos anteriormente que, quando recebe um array como parâmetro, concat() vai concatenar apenas os elementos. Porém, este método não extrai os elementos do array de forma recursiva; ou seja, não vai extrair os elementos de arrays que estejam “aninhados”. Dessa forma, 80 foi extraído do array com sucesso, porém 90 e 100 não, o método considerou [90, 100] como um único elemento.
 
 concat() é um método útil quando não se deseja alterar o array original, e sim fazer uma cópia alterada. Caso isso não seja necessário, considere utilizar push() ou splice() para inserir novos elementos ou fazer alterações no array original.
@@ -436,7 +456,8 @@ O método includes() verifica se o parâmetro passado para ele está incluso na 
 
 Portanto, já criamos um código para definir se um nome está presente na lista. Vamos continuar complementando o código para sustentar o desafio.
 
-Exibindo a média
+*Exibindo a média*
+
 Conforme o desafio, quando o aluno estiver incluso na lista, temos que procurar sua média e exibi-la. Sabemos que a média está no mesmo índice do aluno, porém em outra lista. Por exemplo, João está no índice 0 da lista alunos e sua média está no índice 0 da lista medias. Então, para descobrirmos a média de um aluno, precisamos saber seu índice.
 
 Para encontrar o índice de um elemento em um array, podemos usar o método indexOf() — que significa "índice de", em inglês. Vamos utilizá-lo dentro do bloco if, após o console.log():
@@ -447,7 +468,8 @@ Sabemos que o índice de João é 0, então nosso código está funcionando e ap
 
 Agora que conseguimos selecionar o índice do aluno, vamos pesquisar sua média! A princípio, declararemos a constante mediaDoAluno. Para referenciar a lista medias, usaremos a sintaxe listaDeAlunosEMedias[1]. Em seguida, acessaremos o elemento no mesmo índice do aluno:
 
-Refinamentos
+*Refinamentos* 
+
 Por fim, vamos alterar a mensagem exibida no console para torná-la mais objetiva e remover alguns trechos desnecessários do nosso código.
 
 Primeiro, vamos apagar o console.log() em que mostramos a mensagem de que o aluno está cadastrado. E, no console.log() que está dentro do bloco if, vamos utilizar uma template string com uma mensagem mais explicativa.
@@ -470,11 +492,433 @@ Primeiro, vamos apagar o console.log() em que mostramos a mensagem de que o alun
      exibeNomeENota("Juliana");
  ```
 
-```
+
 o método includes() confere se o elemento passado por parâmetro está incluso em uma lista;
 o método indexOf() retorna o índice do elemento passado por parâmetro.
 
-###Desestruturando uma lista
+### Desestruturando uma lista
+
+*Refatoração*
+
+Tem algo no nosso código que podemos melhorar. Dentro do bloco if, escrevemos listaDeAlunosEMedias[0] para treinar a sintaxe de listas de duas dimensões. Porém, não fica intuitivo o que essa expressão significa, não fica claro que a posição 0 de listaDeAlunosEMedias se refere à lista de alunos. Vale lembrar que também estamos simulando um cenário em que apenas temos acesso à listaDeAlunosEMedias (e não diretamente à lista alunos).
+
+Antes da constante indice, podemos declarar uma constante chamada alunos que receberá a listaDeAlunosEMédia na posição 0:
+Então, na atribuição de indice, substituiremos listaDeAlunosEMedia[0] por alunos. Assim, fica mais claro a que estamos nos referindo e a linha fica mais legível:
+Vamos realizar um processo semelhante para listaDeAlunosEMedias[1]. Também no início do bloco if, criaremos uma constante chamada medias que recebe listaDeAlunosEMedias[1]:
+Em seguida, na atribuição de mediaDoAluno, trocaremos listaDeAlunosEMedias[1] por medias:
+Mas temos como melhorar ainda mias o nosso código! Ao declarar alunos e medias, fizemos atribuições partindo da mesma lista. Desde o JavaScript 6, existe uma maneira mais concisa de fazer essa atribuição. De início, vamos comentar as constantes alunos e medias:
+Abaixo do trecho comentado, declararemos uma constante com uma sintaxe diferente. Vamos escrever const e, em lugar do nome, colocaremos um par de colchetes. Dentro deles, colocaremos alunos e medias, separados por vírgula. Atribuiremos listaDeAlunosEMedias a essa constante:
+
+```
+const [alunos, medias] = listaDeAlunosEMedias;
+```
+
+Essa nova linha equivale às duas linhas que comentamos há pouco. Quando abrimos e fechamos colchetes logo após uma declaração, como const, nós estamos nomeando cada um dos elementos da lista no lado direito da atrubuição. Em outras palavras, criamos uma constante chamada alunos para a posição 0 de listaDeAlunosEMedias e também criamos uma constante chamada medias para a posição 1 de listaDeAlunosEMedias. Funciona exatamente como as duas linhas comentadas.
+
+Essa sintaxe diferenciada e específica do JavaScript chama-se sintaxe de desestruturação de listas. Ela nos ajuda a tornar o código mais conciso e é bastante utilizada no mercado! A desestruturação serve para outros tipos de dados do JavaScript.
+
+
+```
+const alunos = ["João", "Juliana", "Ana", "Caio"];
+const medias = [10, 8, 7.5, 9];
+
+const listaDeAlunosEMedias = [alunos, medias];
+
+function exibeNomeENota(aluno){
+    if (listaDeAlunosEMedias[0].includes(aluno)) {
+        const [alunos, medias] = listaDeAlunosEMedias;
+
+        const indice = alunos.indexOf(aluno);
+
+        const mediaDoAluno = medias[indice];
+
+        console.log(`${aluno} tem a média ${mediaDoAluno}.`);
+
+    } else {
+        console.log("Aluno não encontrado!");
+    }
+}
+
+exibeNomeENota("Ana");
+```
+
+*Para saber mais: desestruturação*
+
+Você viu como utilizar o recurso de desestruturação (ou destructuring, em inglês) do JavaScript em arrays, que também pode ser utilizado em objetos (uma estrutura de dados que você ainda vai conhecer).
+
+### For Clássico
+
+![image](https://github.com/FlavianaFXT/Curso-Javascript-Arrays/assets/113718720/60e20abe-ffcf-40f2-8f6a-2bd9b6f83270)
+
+**Desafio 9: For**
+Imprima o índice e a lista com os seguintes números:
+
+100, 200, 300, 400, 500, 600
+
+*Sintaxe e funcionamento do for*
+
+O for é constituído por três expressões dentro dos parênteses, separadas por ponto e vírgula. A primeira expressão é executada uma única vez. No nosso caso, temos let indice = 0 — a declaração de uma variável, inicializada com o valor 0. Quando o JavaScript interpreta todo o código que escrevemos nesse arquivo, ao chegar na estrutura for, ele executará essa expressão uma vez.
+
+A segunda expressão é a condição de execução do bloco for ** e a terceira expressão será executada sempre ao final do bloco**. Vamos inserir alguns comentários no código (antes do for) para não nos esquecermos da proposta de cada um das três expressões:
+
+Assim, primeiramente o JavaScript executa a expressão let indice = 0. Em seguida, ele adentra no bloco contido entre as chaves. No caso, o console.log(). Terminado o bloco, o JavaScript executa a terceira expressão dentro dos parênteses, incrementando o valor da variável indice. Se antes era 0, agora temos 1.
+
+Com o novo valor de indice, a segunda expressão será interpretada — a condição de execução. Caso a condição seja satisfeita, o bloco entre chaves será executado novamente. Esse ciclo será repetido, até que a condição deixe de ser satisfeita. Executamos o console.log(). Terminado o bloco, executamos indice++. Agora, indice é igual a 2. Verificamos a condição de execução: 2 é menor que 6? Sim, então continuamos a repetição. Em dado momento, indice terá valor 6 e a condição de execução não será mais satisfeita.
+
+Ao construir uma estrutura for, é importantíssimo atentar à condição de execução. Se ela nunca for invalidada, entramos em um loop infinito! Você pode ler mais a respeito na próxima atividade deste curso.
+
+Portanto, essa é a composição e o funcionamento de um for clássico, essa estrutura presente em quase todas as linguagens de programação.
+
+Cada execução do loop chama-se iteração. Então, na primeira iteração, imprimimos o indice quando ele tinha o valor 0. Na segunda iteração, imprimimos o indice quando ele tinha o valor 1, e assim em diante até o valor 5. Houve 6 iterações.
+
+Como um toque final pra melhorar nosso código, na condição de execução do bloco for, podemos substituir o número 6 por um valor dinâmico. Em vez de 6, usaremos o tamanho do array:
+
+```bash
+const numeros = [100, 200, 300, 400, 500, 600];
+
+// Primeira expressão: é executada apenas uma única vez
+// Segunda expressão: condição de execução
+// Terceira expressão: é executada sempre ao final do bloco
+
+for (let indice = 0; indice < numeros.length; indice++) {
+    console.log(numeros[indice]);
+}
+```
+
+**Para saber mais: o loop infinito**
+
+
+Os laços de repetição, como o for, são ferramentas essenciais na programação. São utilizados para, entre outras coisas, percorrer arrays e executar blocos de código para cada elemento.
+
+Porém, quando usamos for para executar códigos em loop, temos que deixar claro qual é a condição de execução do loop. Caso contrário, o programa não sabe em que momento deve parar de executar o loop, acaba ficando “preso” e entrando em loop infinito.
+
+O loop infinito pode travar seu navegador, o terminal em que o código estiver sendo executado, ou até mesmo o computador, então é importante saber como evitá-lo.
+
+Abaixo temos um exemplo de for que imprime no terminal números de 0 a 10:
+
+```
+for (let indice = 0; indice <= 10; indice++) {
+  console.log(indice);
+}
+```
+
+O código executa corretamente e o programa é capaz de encerrar o loop, pois a condição de execução indice <= 10 está correta, a variável indice que faz o controle do loop começa em 0 e ao fim de cada ciclo do loop, é aumentada em 1 (indice++). Quando o valor da variável de controle indice chega a 11, depois de imprimir o número 10 no terminal, a comparação indice <= 10 se torna false e isso encerra o loop.
+
+O loop infinito pode acontecer caso alguma das expressões seja passada de forma incorreta ou esteja faltando. Por exemplo a terceira, responsável por alterar indice após o bloco de código dentro do for ter sido executado:
+
+```
+for (let indice = 0; indice <= 10; ) {
+  console.log(indice);
+}
+```
+
+A mesma coisa acontecerá se o for for executado sem a segunda expressão, que é a condição de execução.
+
+```
+for (let indice = 0; ; indice++) {
+  console.log(indice);
+}
+```
+
+Outro caso que pode gerar loop infinito é o de alterações feitas na variável de controle dentro do bloco do for, o que não é uma boa prática:
+
+```
+for (let indice = 0; indice < 10; indice++) {
+  indice--;
+  console.log(indice);
+}
+```
+
+IMPORTANTE: Como mencionamos acima, o loop infinito pode travar o terminal ou computador. Se durante seus estudos você perceber que executou um código com loop infinito, finalize a execução do programa o mais rápido possível no terminal pressionando “Ctrl + C”.
+
+### Média com FOR
+
+![image](https://github.com/FlavianaFXT/Curso-Javascript-Arrays/assets/113718720/14013d6a-8465-4c4d-9a42-f0272899a9ae)
+
+*Desafio 10: Média*
+Calcule a média entre as seguintes notas, usando o for:
+
+10
+6.5
+8
+7.5
+
+
+```
+const notas = [10, 6.5, 8, 7.5];
+
+let somaDasNotas = 0;
+
+for (let i = 0; i < notas.length; i++) {
+  somaDasNotas += notas[i];
+}
+
+const media = somaDasNotas / notas.length;
+
+console.log(`A média das notas é ${media}.`);
+```
+
+
+*Faça como eu fiz: loops em matrizes*
+
+
+Vimos como usar os loops para percorrer um array utilizando ofor:
+
+
+```
+const notas = [10, 6.5, 8, 7.5];
+
+let somaDasNotas = 0;
+
+for (let i = 0; i < notas.length; i++) {
+  somaDasNotas += notas[i];
+}
+
+const media = somaDasNotas / notas.length;
+
+console.log(`A média das notas é ${media}.`);
+```
+
+
+Agora, se quisermos percorrer matrizes, um único for não será suficiente. Mas podemos usar o for várias vezes, uma para cada dimensão da matriz. Assim, uma matriz de duas dimensões usará dois for, um dentro do outro. Começaremos criando mais alguns arrays e uma matriz de 2 dimensões.
+
+
+```
+const notas1 = [10 , 6.5, 8 ,7.5]
+const notas2 = [9  , 6  , 6]
+const notas3 = [8.5, 9.5]
+ 
+const notasGerais = [notas1,notas2,notas3]
+ 
+let media = 0
+
+```
+
+
+Com a matriz criada, vamos iterar sobre os elementos. Mas não poderemos usar o mesmo for utilizado da última vez, já que agora notasGerais[i] contém um array e não mais um valor numérico. Por isso usaremos outro for para acessar esse array.
+
+
+```
+for (let i = 0; i < notasGerais.length; i++) {
+  for (let j = 0; j < notasGerais[i].length; j++) {
+    media += notasGerais[i][j]/notasGerais[i].length;
+  }
+}
+```
+
+
+Vamos entender um pouco melhor as partes que compõem esse código.
+
+No primeiro for criamos uma let i e vamos executar o bloco de código enquanto i for menor que notasGerais.length. Como temos 3 elementos (nesse caso, arrays), o primeiro for será executado 3 vezes, com i=0,i=1,i=2.
+
+O segundo for tem uma nova variável, a let j, já que não podemos usar uma nova let i porque ela já está definida, e vamos executá-lo enquanto j for menor que notasGerais[i].length. Como cada notasGerais[i] é um array, podemos obter a propriedade de tamanho dele utilizando o .length.
+
+O código dentro do segundo for vai acumular o valor de notasGerais[i][j], lembrando que notasGerais[i] é um dos 3 arrays iniciais. Assim, o parâmetro [j] vai acessar o elemento dentro array escolhido pelo notasGerais[i], retornando um número que podemos usar na nossa conta.
+
+Então ficamos com o seguinte código:
+
+
+```
+const notas1 = [10 , 6.5, 8 ,7.5]
+const notas2 = [9  , 6  , 6]
+const notas3 = [8.5, 9.5]
+ 
+const notasGerais = [notas1,notas2,notas3]
+ 
+let media = 0
+ 
+for (let i = 0; i < notasGerais.length; i++) {
+  for (let j = 0; j < notasGerais[i].length; j++) {
+    media += notasGerais[i][j]/notasGerais[i].length;
+  }
+}
+ 
+console.log(media)
+```
+
+
+No entanto, este código retorna uma média de 24. Como tal média é possível se não temos nenhum número maior do que 10? O que acontece é que para conseguir a média entre todos os arrays, temos que somar as médias dos arrays de notas, 8+7+9 e dividir pela quantidade de arrays em notasGerais.
+
+
+```
+const notas1 = [10, 6.5, 8 ,7.5]
+const notas2 = [9, 6, 6]
+const notas3 = [8.5, 9.5]
+ 
+const notasGerais = [notas1,notas2,notas3]
+ 
+let media = 0
+ 
+for (let i = 0; i < notasGerais.length; i++) {
+  for (let j = 0; j < notasGerais[i].length; j++) {
+    media += notasGerais[i][j]/notasGerais[i].length;
+  }
+}
+ 
+media = media/notasGerais.length
+ 
+console.log(media)
+```
+
+
+Com isso usamos o for para passar por todos os elementos da matriz, e nesse caso, calcular a média dos valores deles.
+
+
+### Media com FOR OF
+
+*Desafio 11: Média com for of*
+
+Calcule a média entre as seguintes notas usando o for of:
+
+10
+6.5
+8
+7.5
+
+Diferentemente do for clássico, o for of é composto por uma única expressão. Além disso, essa estrutura é caracterizada pelo of, que incluímos após let elemento. O termo of significa "de", em inglês.
+
+Portanto, com essa expressão, é como se estivéssemos dizendo: para cada elemento de notas, execute o código que está dentro das chaves. O for of é muito adequado para utilizarmos com arrays.
+
+No for clássico, nós mesmos declaramos uma variável de controle, a incrementamos manualmente e indicamos a condição para a continuidade (ou não) do loop, que será avaliada a cada iteração. Já no for of, o JavaScript automatiza alguns desses processos.
+
+Quando queremos percorrer um array, podemos usar o for of. Assim, o JavaScript já entende que temos que percorrer o array do início ao fim. A grande vantagem dessa estrutura é que podemos selecionar diretamente o valor de cada elemento da lista e, por exemplo, imprimi-lo com um console.log(), como fizemos.
+
+Usamos a palavra "elemento", porque é um termo genérico. Vamos renomeá-lo para um nome mais específico para nosso caso. Posicionaremos o cursor sobre elemento, pressionaremos a tecla "F2" e o renomearemos de "elemento" para "nota". Assim, o código ficará mais semântico:
+
+O for of é uma forma mais concisa de escrever o for tradicional, mas depende da situação. Ele funciona em casos que precisamos percorrer uma lista do início ao fim, passando por todos os elementos.
+
+O for clássico pode ter uma sintaxe mais complicada, porém ele também é mais flexível para abordar contextos mais complexos. Por exemplo, conseguimos percorrer um array de trás para frente, fazer um decremento na variável de controle e ou até aumentar essa variável de dois em dois, de três em três, caso não seja necessário passar por todos os itens da lista.
+
+O for of não tem toda essa flexibilidade, contudo ele fornece uma sintaxe mais sucinta que serve para a maioria dos casos, quando o objetivo é percorrer um array completo.
+
+
+```
+const notas = [10, 6.5, 8, 7.5];
+
+let somaDasNotas = 0;
+
+for (let nota of notas) {
+  somaDasNotas += nota;
+}
+
+const media = somaDasNotas / notas.length;
+
+console.log(`A média das notas é ${media}.`);
+```
+
+
+Para saber mais: possibilidades do for
+
+
+A estrutura for tem uma sintaxe mais complexa que o for of, com mais expressões, mas por causa disso fornece um maior leque de possibilidades de acordo com a nossa necessidade.
+
+Por exemplo, podemos percorrer um array do fim ao início:
+
+
+```
+const numeros = [100, 200, 300, 400, 500, 600];
+
+for (let i = numeros.length - 1; i >= 0; i--) {
+  console.log(numeros[i]);
+}
+```
+
+
+Declaramos o valor inicial da variável de controle como o valor da última posição do array (numeros.length - 1); realizamos um decremento (i--) ao invés de um incremento e a condição de execução é i >= 0. Ou seja, nesse caso, a variável i começará do valor 5 e irá até 0.
+
+Ao executar o código, no terminal aparecerá:
+
+
+```
+600
+500
+400
+300
+200
+100
+```
+
+
+Outra possibilidade é alterar a quantidade incrementada ou decrementada, utilizando o mesmo código acima, mas alterando o decremento para i -= 2. Então, teremos o seguinte:
+
+
+```
+const numeros = [100, 200, 300, 400, 500, 600];
+
+for (let i = numeros.length - 1; i >= 0; i -= 2) {
+  console.log(numeros[i]);
+}
+```
+
+
+O valor de i será diminuído de 2 em 2 a cada iteração (lembrando que a expressão i -= 2 equivale a i = i - 2). Assim, os valores de i serão 5, 3 e 1, e no terminal aparecerá:
+
+
+```
+600
+400
+200
+```
+
+
+Também temos controle sobre a condição de execução, então se alterarmos esse último código para ter a condição numeros[i] > 300, teremos o seguinte:
+
+
+```
+const numeros = [100, 200, 300, 400, 500, 600];
+
+for (let i = numeros.length - 1; numeros[i] >= 300; i -= 2) {
+  console.log(numeros[i]);
+}
+```
+
+
+E no terminal aparecerá:
+
+
+```
+600
+400
+```
+
+
+Por fim, até agora utilizamos a estrutura for apenas para percorrer arrays, mas ela pode ser utilizada para repetir qualquer instrução conforme a necessidade. Por exemplo, podemos criar dinamicamente um array com todos os números pares de 0 a 100:
+
+
+```
+const numerosPares = [];
+
+for (let i = 0; i <= 100; i += 2) {
+  numerosPares.push(i);
+}
+
+console.log(numerosPares);
+```
+
+
+No terminal aparecerá:
+
+
+```
+[
+   0,  2,  4,  6,  8, 10,  12, 14, 16, 18, 20,
+  22, 24, 26, 28, 30, 32,  34, 36, 38, 40, 42,
+  44, 46, 48, 50, 52, 54,  56, 58, 60, 62, 64,
+  66, 68, 70, 72, 74, 76,  78, 80, 82, 84, 86,
+  88, 90, 92, 94, 96, 98, 100
+]
+```
+
+
+Na maioria dos casos, você não precisará realizar repetições mais complexas como essas, mas nunca se sabe, certo? Por isso, conhecer os recursos de uma linguagem e suas possibilidades pode ser uma “mão na roda” no futuro.
+
+Como vimos, para percorrer todos os elementos de um array e do início ao fim, o for of fornece uma sintaxe mais sucinta que o for.
+
+
+### 4 - FUNÇÕES CALLBACK
+
+### Média com FOR EACH
+
 
 
 
