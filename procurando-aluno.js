@@ -7,13 +7,19 @@ const listaDeAlunosEMedias = [alunos, medias];
 function exibeNomeENota (aluno){
     if(listaDeAlunosEMedias[0].includes(aluno)){
 
-        console.log(`${aluno} está cadastrado!`);
+        // console.log(`${aluno} está cadastrado!`);
 
-        const indice = listaDeAlunosEMedias[0].indexOf(aluno);
+        // const alunos = listaDeAlunosEMedias[0];
+        // const medias = listaDeAlunosEMedias[1];
+        //essas duas consts acima podem ser simplificadas da seguinte forma, utilizando desestruturação de lista:
 
-        console.log(indice);
+        const [alunos, medias] = listaDeAlunosEMedias;
 
-        const mediaDoAluno = listaDeAlunosEMedias[1].indice;
+        const indice = alunos.indexOf(aluno);
+
+        // console.log(indice);
+
+        const mediaDoAluno = medias[indice];
 
         console.log(`${aluno} tem a média ${mediaDoAluno}`);
 
