@@ -39,6 +39,12 @@ Diferentes formas de utilizar funções callback: Podemos utilizar funções an�
 
 Como utilizar o map: O map também aceita funções callback, assim como o forEach, e é adequado para quando queremos "reescrever" os valores de um array, sem modificar o array original. Um novo array é criado com os valores reescritos.
 
+Como utilizar o filter e o reduce: Aprendemos mais métodos modernos do JavaScript que nos ajudam em situações mais específicas. Utilizamos o filter para criar um array filtrado a partir de um existente e o reduce para acumular valores de um array em um só.
+
+Como clonar arrays com o spread operator ...: Entendemos o problema de referência do JavaScript ao tentar atribuir um array a um novo. Para resolver esse problema, utilizamos o spread operator para espalhar todos os valores de um array em um novo, realizando a clonagem com sucesso.
+
+Como utilizar a estrutura Set: Vimos como criar um Set a partir de um array existente, a fim de remover todas as suas duplicatas. Em seguida, utilizamos o spread operator para converter o Set de volta em um lista.
+
             
 ## 1 - Preparando o ambiente
 
@@ -1632,6 +1638,53 @@ De forma análoga à solução do vídeo, caso queiramos passar uma cópia do ar
 array do parâmetro é 7,7,8,9,10
 arrayOriginal é 7,7,8,9
 ```
+
+### Removendo Elementos Repetidos
+
+![image](https://github.com/FlavianaFXT/Curso-Javascript-Arrays/assets/113718720/4582aa7f-f016-4f3c-9c2c-e9732d06f477)
+
+Um professor acidentalmente adicionou nomes repetidos na lista de chamada:
+
+Ana
+Clara
+Maria
+Maria
+João
+João
+João
+Remova os nomes repetidos, deixando apenas um de cada.
+
+Vou mostrar uma forma mais facilitada que o JS oferece com uma estrutura chamada Set, que em português significa "conjunto".
+Para criar um novo Set vamos escrever const meuSet = new Set().
+
+A palavra "new" em português significa "novo", é como se tivéssemos escrito "quero criar um novo Set".
+
+Esse Set é uma classe do JavaScript, usaremos uma classe porque ela já vem com algumas lógicas internas.
+
+O Set bem parecido com as listas que trabalhamos até agora, mas tem algumas regras a mais. Uma delas é que os elementos de um Set não podem se repetir. O que é ótimo para nos ajudar nesse desafio.
+
+Para criar um Set com valores iniciais podemos passar uma lista dentro do parênteses de Set(). Vamos testar colocando alguns números e alguns deles reeptidos: "1, 1, 2, 3, 4, 4". e um console.log(meuSet) para vermos o que vai acontecer no meuSet.
+
+Para finalizar, existe uma forma mais concisa de escrevermos esse código. Em vez de fazer [...meuSet] poderíamos colocar diretamente um new Set(nomes): [...new Set(nomes)] e apagar a linha em que declaramos o meuSet.
+
+```
+const nomes = ["Ana", "Clara", "Maria", "Maria", "João", "João", "João"];
+
+const nomesAtualizados = [...new Set(nomes)];
+
+console.log(nomesAtualizados);
+```
+
+
+Usando o [...new Set(nomes)] fazemos duas coisas ao mesmo tempo: passamos os nomes como valor de entrada do Set e os espalhamos para um novo array.
+
+#### Para saber mais: estrutura Set
+
+
+Você viu que a estrutura Set é muito semelhante aos arrays, mas possui diferentes métodos e a interessante regra de que seus elementos não podem se repetir. Utilizamos essa regra ao nosso favor para eliminar as duplicatas de um array, convertendo-o para um Set e de volta para um array.
+
+Você pode explorar mais seus conhecimentos sobre o Set na documentação (https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Set).
+
 
 
 
