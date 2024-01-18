@@ -53,24 +53,21 @@ Como subtópicos temos:
 
 ## INDICE
 
-- [APRESENTAÇÃO](##APRESENTAÇÃO)
-- [Quem é Flaviana](###Quem-é-Flaviana?)
-- [Contatos](###Contatos)
-- [TECNOLOGIAS EXPLORADAS NO CURSO](##TECNOLOGIAS-EXPLORADAS-NO-CURSO)
-
-  
-- [DESCRIÇÃO DO PROJETO](#Descrição-Do-Projeto)
-- [TECNOLOGIAS UTILIZADAS](#Tecnologias-Utilizadas)
-- [PASSO A PASSO UTILIZADO](#Passo-A-Passo-Utilizado)
+- [APRESENTAÇÃO](#APRESENTAÇÃO)
+- [TECNOLOGIAS EXPLORADAS NO CURSO](#TECNOLOGIAS-EXPLORADAS-NO-CURSO)
+- [DESCRIÇÃO DO CURSO](#DESCRIÇÃO-DO-CURSO)
+- [CONTEUDO](#CONTEUDO)
+- [1-Preparando o ambiente](##1-Preparando-o-ambiente)
+- 
 - [FUNCIONALIDADES IMPLEMENTADAS](#Funcionalidades-Implementadas)
 - [IMPLEMENTAÇÕES FUTURAS](#Implementações-Futuras)
 - [COMO RODAR O PROJETO](#Como-Rodar-O-Projeto)
 - [CONFIRA O RESULTADO ](#Confira-O-Resultado)
 
-## APRESENTAÇÃO
+# APRESENTAÇÃO
 
 
-### Quem é Flaviana?
+## Quem é Flaviana?
 
 
 ![image](https://github.com/FlavianaFXT/ProjetoFinal-reprograma/assets/113718720/1e13d5e7-b1b4-4701-a689-ec293ec77ea1)
@@ -85,7 +82,7 @@ Flaviana Ferraz é uma sertaneja de Pernambuco morando no sertão da Paraiba, fo
 - [GitHub](https://github.com/flavianafxt)
 
 
-## TECNOLOGIAS EXPLORADAS NO CURSO
+# TECNOLOGIAS EXPLORADAS NO CURSO
 
 | Ferramenta | Descrição |
 | --- | --- |
@@ -95,14 +92,17 @@ Flaviana Ferraz é uma sertaneja de Pernambuco morando no sertão da Paraiba, fo
 | `Github` | Hospedagem do código fonte integrado com gerenciador de versionamento|
 
 
-## DESCRIÇÃO DO CURSO
+# DESCRIÇÃO DO CURSO
 
 ### 🧠 Contexto
 
 ### 🧠 Estrutura 
 
-            
-## 1 - Preparando o ambiente
+
+# CONTEUDO 
+
+
+## 1 Preparando o ambiente
 
 JavaScript é conhecida como a “linguagem da web”. Embora tenha se desenvolvido no front-end, atualmente cada vez mais a utilizamos no chamado back-end, ou server side (lado do servidor) das aplicações web. Este curso foca no uso do JavaScript para back-end.
 
