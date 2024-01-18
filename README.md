@@ -57,7 +57,7 @@ Como subtópicos temos:
 - [TECNOLOGIAS EXPLORADAS NO CURSO](#TECNOLOGIAS-EXPLORADAS-NO-CURSO)
 - [DESCRIÇÃO DO CURSO](#DESCRIÇÃO-DO-CURSO)
 - [CONTEUDO](#CONTEUDO)
-- [1-Preparando o ambiente](##1-Preparando-o-ambiente)
+- [1 Preparando o ambiente](##1-Preparando-o-ambiente)
 - 
 - [FUNCIONALIDADES IMPLEMENTADAS](#Funcionalidades-Implementadas)
 - [IMPLEMENTAÇÕES FUTURAS](#Implementações-Futuras)
